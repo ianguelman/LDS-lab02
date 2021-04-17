@@ -62,7 +62,7 @@ CREATE TABLE lab02.dbo.Contratante (
 -- DROP TABLE lab02.dbo.Pedido GO
 
 CREATE TABLE lab02.dbo.Pedido (
-	Id_Pedido uniqueidentifier NOT NULL,
+	Id_Pedido INTEGER NOT NULL,
 	CPF_Contratante varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	Placa_Veiculo varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	CONSTRAINT PK_Pedido_1 PRIMARY KEY (Id_Pedido),
@@ -78,8 +78,8 @@ CREATE TABLE lab02.dbo.Pedido (
 -- DROP TABLE lab02.dbo.Parecer GO
 
 CREATE TABLE lab02.dbo.Parecer (
-	Id_Parecer uniqueidentifier NOT NULL,
-	Id_Pedido uniqueidentifier NOT NULL,
+	Id_Parecer INTEGER NOT NULL,
+	Id_Pedido INTEGER NOT NULL,
 	CNPJ_Agente varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Aprovado bit NOT NULL,
 	[Data] date NOT NULL,
