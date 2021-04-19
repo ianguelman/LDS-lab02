@@ -2,16 +2,18 @@
 
 -- Drop table
 
--- DROP TABLE lab02.dbo.Agente GO
+-- DROP TABLE lab02.dbo.Agente
 
 CREATE TABLE lab02.dbo.Agente (
+
 	CNPJ varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Empresa varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Login varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Senha varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Nome varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Placa_Veiculo varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-	CONSTRAINT PK_Agente PRIMARY KEY (CNPJ)
+	CONSTRAINT PK_Agente PRIMARY KEY (CNPJ),
+	CONSTRAINT FK_Agente_Automovel FOREIGN KEY (Placa_Veiculo) REFERENCES lab02.dbo.Automovel(Placa)
 );
 
 
@@ -19,7 +21,7 @@ CREATE TABLE lab02.dbo.Agente (
 
 -- Drop table
 
--- DROP TABLE lab02.dbo.Automovel GO
+-- DROP TABLE lab02.dbo.Automovel
 
 CREATE TABLE lab02.dbo.Automovel (
 	Placa varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -35,7 +37,7 @@ CREATE TABLE lab02.dbo.Automovel (
 
 -- Drop table
 
--- DROP TABLE lab02.dbo.Contratante GO
+-- DROP TABLE lab02.dbo.Contratante
 
 CREATE TABLE lab02.dbo.Contratante (
 	CPF varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -48,7 +50,8 @@ CREATE TABLE lab02.dbo.Contratante (
 	Senha varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Nome varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Placa_Veiculo varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-	CONSTRAINT PK_Contratante PRIMARY KEY (CPF)
+	CONSTRAINT PK_Contratante PRIMARY KEY (CPF),
+	CONSTRAINT FK_Contratante_Automovel FOREIGN KEY (Placa_Veiculo) REFERENCES lab02.dbo.Automovel(Placa),
 );
 
 
@@ -56,7 +59,7 @@ CREATE TABLE lab02.dbo.Contratante (
 
 -- Drop table
 
--- DROP TABLE lab02.dbo.Pedido GO
+-- DROP TABLE lab02.dbo.Pedido
 
 CREATE TABLE lab02.dbo.Pedido (
 	Id_Pedido INTEGER NOT NULL,
@@ -72,7 +75,7 @@ CREATE TABLE lab02.dbo.Pedido (
 
 -- Drop table
 
--- DROP TABLE lab02.dbo.Parecer GO
+-- DROP TABLE lab02.dbo.Parecer
 
 CREATE TABLE lab02.dbo.Parecer (
 	Id_Parecer INTEGER NOT NULL,
