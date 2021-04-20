@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.locacao.controller;
 
 import java.util.List;
 
@@ -6,12 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.locacao.model.Agente;
+import com.locacao.model.AgenteRepository;
+import com.locacao.model.Automovel;
+import com.locacao.model.AutomovelRepository;
+import com.locacao.model.Contratante;
+import com.locacao.model.ContratanteRepository;
+import com.locacao.model.Parecer;
+import com.locacao.model.ParecerRepository;
+import com.locacao.model.Pedido;
+import com.locacao.model.PedidoRepository;
+import com.locacao.view.Cli;
+
 @SpringBootApplication
 @RestController
+@EnableJpaRepositories("com.locacao.model")
+@EntityScan("com.locacao.model")
 public class BackendApplication implements CommandLineRunner {
 
 	@Autowired
@@ -40,20 +57,22 @@ public class BackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<Automovel> automoveis = automovelRepo.findAll();
-		automoveis.forEach(System.out::println);
-
+	
+		
+		List<Automovel> automoveis = automovelRepo.findAll();		
+		Cli.imprimirLista(automoveis);
+		
 		List<Agente> agentes = agenteRepo.findAll();
-		agentes.forEach(System.out::println);
+		Cli.imprimirLista(agentes);
 
 		List<Contratante> contratantes = contratanteRepo.findAll();
-		contratantes.forEach(System.out::println);
+		Cli.imprimirLista(contratantes);
 
 		List<Parecer> pareceres = parecerRepo.findAll();
-		pareceres.forEach(System.out::println);
+		Cli.imprimirLista(pareceres);
 
 		List<Pedido> pedidos = pedidoRepo.findAll();
-		pedidos.forEach(System.out::println);
+		Cli.imprimirLista(pedidos);
 	}
 
 }
