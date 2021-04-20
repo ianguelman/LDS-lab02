@@ -1,8 +1,15 @@
 package com.locacao.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Contratante")
@@ -17,14 +24,17 @@ public class Contratante {
 	private String login;
 	private String senha;
 	private String nome;
-	private String placa_veiculo;
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CPF_Contratante")
+	private List<Automovel> automoveis;
 
 	public Contratante() {
 		super();
 	}
 
 	public Contratante(String cpf, String rg, String endereco, String profissao, String entidades_empregadoras,
-			float rendimento, String login, String senha, String nome, String placa_veiculo) {
+			float rendimento, String login, String senha, String nome) {
 		super();
 		this.cpf = cpf;
 		this.rg = rg;
@@ -35,7 +45,6 @@ public class Contratante {
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
-		this.placa_veiculo = placa_veiculo;
 	}
 
 	public String getCpf() {
@@ -110,18 +119,20 @@ public class Contratante {
 		this.nome = nome;
 	}
 
-	public String getPlaca_veiculo() {
-		return placa_veiculo;
+	public List<Automovel> getAutomoveis() {
+		return automoveis;
 	}
 
-	public void setPlaca_veiculo(String placa_veiculo) {
-		this.placa_veiculo = placa_veiculo;
+	public void setAutomoveis(List<Automovel> automoveis) {
+		this.automoveis = automoveis;
 	}
 
 	@Override
 	public String toString() {
 		return "Contratante [cpf=" + cpf + ", rg=" + rg + ", endereco=" + endereco + ", profissao=" + profissao
 				+ ", entidades_empregadoras=" + entidades_empregadoras + ", rendimento=" + rendimento + ", login="
-				+ login + ", senha=" + senha + ", nome=" + nome + ", placa_veiculo=" + placa_veiculo + "]";
+				+ login + ", senha=" + senha + ", nome=" + nome + ", automoveis=" + automoveis + "]";
 	}
+
+
 }

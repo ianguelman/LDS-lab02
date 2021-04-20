@@ -2,7 +2,11 @@ package com.locacao.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "Automovel")
@@ -13,6 +17,14 @@ public class Automovel {
 	private int ano;
 	private String marca;
 	private String modelo;
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="CPF_Contratante")
+	private Contratante contratante;
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="CNPJ_Agente")
+	private Agente agente;
 
 	public Automovel() {
 		super();
@@ -67,10 +79,20 @@ public class Automovel {
 		this.modelo = modelo;
 	}
 
+	public Contratante getContratante() {
+		return contratante;
+	}
+
+	public void setContratante(Contratante contratante) {
+		this.contratante = contratante;
+	}
+
 	@Override
 	public String toString() {
 		return "Automovel [placa=" + placa + ", matricula=" + matricula + ", ano=" + ano + ", marca=" + marca
 				+ ", modelo=" + modelo + "]";
 	}
+	
+
 
 }
