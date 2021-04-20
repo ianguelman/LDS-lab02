@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -90,6 +89,31 @@ public class BackendApplication implements CommandLineRunner {
 	public String cadastrarPedido(@RequestParam() String cpf_contratante,
 			@RequestParam() String placa_veiculo) {
 		return pedidoRepo.save(new Pedido(cpf_contratante, placa_veiculo)).toString();
+	}
+	
+	@GetMapping("/listar/automoveis")
+	public List<Automovel> listarAutomoveis() {
+		return automovelRepo.findAll();
+	}
+
+	@GetMapping("/listar/agentes")
+	public List<Agente> listarAgentes() {
+		return agenteRepo.findAll();
+	}
+
+	@GetMapping("/listar/contratantes")
+	public List<Contratante> listarContratantes() {
+		return contratanteRepo.findAll();
+	}
+
+	@GetMapping("/listar/pareceres")
+	public List<Parecer> listarPareceres() {
+		return parecerRepo.findAll();
+	}
+	
+	@GetMapping("/listar/pedidos")
+	public List<Pedido> listarPedidos() {
+		return pedidoRepo.findAll();
 	}
 
 	@Override
