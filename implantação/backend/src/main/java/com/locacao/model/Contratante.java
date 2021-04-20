@@ -19,6 +19,25 @@ public class Contratante {
 	private String nome;
 	private String placa_veiculo;
 
+	public Contratante() {
+		super();
+	}
+
+	public Contratante(String cpf, String rg, String endereco, String profissao, String entidades_empregadoras,
+			float rendimento, String login, String senha, String nome, String placa_veiculo) {
+		super();
+		this.cpf = cpf;
+		this.rg = rg;
+		this.endereco = endereco;
+		this.profissao = profissao;
+		this.entidades_empregadoras = entidades_empregadoras;
+		this.rendimento = rendimento;
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.placa_veiculo = placa_veiculo;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}

@@ -12,15 +12,25 @@ public class Pedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id_pedido;
+	private int id_pedido;
 	private String cpf_contratante;
 	private String placa_veiculo;
 
-	public String getId_pedido() {
+	public Pedido() {
+		super();
+	}
+
+	public Pedido(String cpf_contratante, String placa_veiculo) {
+		super();
+		this.cpf_contratante = cpf_contratante;
+		this.placa_veiculo = placa_veiculo;
+	}
+
+	public int getId_pedido() {
 		return id_pedido;
 	}
 
-	public void setId_pedido(String id_pedido) {
+	public void setId_pedido(int id_pedido) {
 		this.id_pedido = id_pedido;
 	}
 
@@ -45,5 +55,5 @@ public class Pedido {
 		return "Pedido [id_pedido=" + id_pedido + ", cpf_contratante=" + cpf_contratante + ", placa_veiculo="
 				+ placa_veiculo + "]";
 	}
-	
+
 }

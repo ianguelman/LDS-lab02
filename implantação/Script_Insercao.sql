@@ -46,37 +46,37 @@ INSERT INTO lab02.dbo.Contratante(CPF, RG, Endereco, Profissao, Entidades_Empreg
 VALUES('40858555069','277714254','Rua Timbra,58 ,Bairro Alto, Cidade Itu, Estado SP','Nutricionista','Aporte', 14100.00,'Saul','127','Saulo', NULL);
 
 
-INSERT INTO lab02.dbo.Pedido(Id_Pedido, CPF_Contratante, Placa_Veiculo)
-VALUES(1,'40858555069','FFW6314');
+INSERT INTO lab02.dbo.Pedido(CPF_Contratante, Placa_Veiculo)
+VALUES('40858555069','FFW6314');
 
-INSERT INTO lab02.dbo.Pedido(Id_Pedido, CPF_Contratante, Placa_Veiculo)
-VALUES(2,'34264202019','HRN1274');
+INSERT INTO lab02.dbo.Pedido(CPF_Contratante, Placa_Veiculo)
+VALUES('34264202019','HRN1274');
 
-INSERT INTO lab02.dbo.Pedido(Id_Pedido, CPF_Contratante, Placa_Veiculo)
-VALUES(3,'42453938070','KJG6100');
+INSERT INTO lab02.dbo.Pedido(CPF_Contratante, Placa_Veiculo)
+VALUES('42453938070','KJG6100');
 
-INSERT INTO lab02.dbo.Pedido(Id_Pedido, CPF_Contratante, Placa_Veiculo)
-VALUES(4,'69637888047','MZH7319');
+INSERT INTO lab02.dbo.Pedido(CPF_Contratante, Placa_Veiculo)
+VALUES('69637888047','MZH7319');
 
-INSERT INTO lab02.dbo.Pedido(Id_Pedido, CPF_Contratante, Placa_Veiculo)
-VALUES(5,'93469446091','GQY3147');
+INSERT INTO lab02.dbo.Pedido(CPF_Contratante, Placa_Veiculo)
+VALUES('93469446091','GQY3147');
 
-INSERT INTO lab02.dbo.Pedido(Id_Pedido, CPF_Contratante, Placa_Veiculo)
-VALUES(6,'42453938070','HRN1274');
+INSERT INTO lab02.dbo.Pedido(CPF_Contratante, Placa_Veiculo)
+VALUES('42453938070','HRN1274');
 
 
-INSERT INTO lab02.dbo.Parecer(ID_Parecer, CNPJ_Agente, Aprovado, Data, Id_Pedido)
-VALUES(1,'80394140000120', 0, '04/10/2021', 5);
+INSERT INTO lab02.dbo.Parecer(CNPJ_Agente, Aprovado, Data, Id_Pedido)
+VALUES('80394140000120', 0, '04/10/2021', 5);
 
-INSERT INTO lab02.dbo.Parecer(ID_Parecer, CNPJ_Agente, Aprovado, Data, Id_Pedido)
-VALUES(2,'55507526000154', 1, '04/11/2021', 4);
+INSERT INTO lab02.dbo.Parecer(CNPJ_Agente, Aprovado, Data, Id_Pedido)
+VALUES('55507526000154', 1, '04/11/2021', 4);
 
-INSERT INTO lab02.dbo.Parecer(ID_Parecer, CNPJ_Agente, Aprovado, Data, Id_Pedido)
-VALUES(3,'68460689000170', 0, '04/12/2021', 3);
+INSERT INTO lab02.dbo.Parecer(CNPJ_Agente, Aprovado, Data, Id_Pedido)
+VALUES('68460689000170', 0, '04/12/2021', 3);
 
-INSERT INTO lab02.dbo.Parecer(ID_Parecer, CNPJ_Agente, Aprovado, Data, Id_Pedido)
-VALUES(4,'87221731000145', 1, '04/13/2021', 2);
+INSERT INTO lab02.dbo.Parecer(CNPJ_Agente, Aprovado, Data, Id_Pedido)
+VALUES('87221731000145', 1, '04/13/2021', 2);
 
-INSERT INTO lab02.dbo.Parecer(ID_Parecer, CNPJ_Agente, Aprovado, Data, Id_Pedido)
-VALUES(5,'16935239000193', 0, '04/14/2021', 1);
+INSERT INTO lab02.dbo.Parecer(CNPJ_Agente, Aprovado, Data, Id_Pedido)
+VALUES('16935239000193', 0, '04/14/2021', 1);
 

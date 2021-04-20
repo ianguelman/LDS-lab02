@@ -14,6 +14,19 @@ public class Automovel {
 	private String marca;
 	private String modelo;
 
+	public Automovel() {
+		super();
+	}
+
+	public Automovel(String placa, String matricula, int ano, String marca, String modelo) {
+		super();
+		this.placa = placa;
+		this.matricula = matricula;
+		this.ano = ano;
+		this.marca = marca;
+		this.modelo = modelo;
+	}
+
 	public String getPlaca() {
 		return placa;
 	}

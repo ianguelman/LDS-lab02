@@ -1,5 +1,6 @@
 package com.locacao.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,13 +57,47 @@ public class BackendApplication implements CommandLineRunner {
 		return String.format("Hello %s!", name);
 	}
 
+	@GetMapping("/cadastro/automovel")
+	public String cadastrarAutomovel(@RequestParam() String placa, @RequestParam() String matricula,
+			@RequestParam() int ano, @RequestParam() String marca, @RequestParam() String modelo) {
+		return automovelRepo.save(new Automovel(placa, matricula, ano, marca, modelo)).toString();
+	}
+
+	@GetMapping("/cadastro/agente")
+	public String cadastrarAgente(@RequestParam() String cnpj, @RequestParam() String empresa,
+			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome,
+			@RequestParam(required=false) String placa_veiculo) {
+		return agenteRepo.save(new Agente(cnpj, empresa, login, senha, nome, placa_veiculo)).toString();
+	}
+
+	@GetMapping("/cadastro/contratante")
+	public String cadastrarContratante(@RequestParam() String cpf, @RequestParam() String rg,
+			@RequestParam() String endereco, @RequestParam() String profissao,
+			@RequestParam() String entidades_empregadoras, @RequestParam() float rendimento,
+			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome,
+			@RequestParam(required = false) String placa_veiculo) {
+		return contratanteRepo.save(new Contratante(cpf, rg, endereco, profissao, entidades_empregadoras, rendimento,
+				login, senha, nome, placa_veiculo)).toString();
+	}
+	
+	@GetMapping("/cadastro/parecer")
+	public String cadastrarParecer(@RequestParam() int id_pedido, @RequestParam() String cnpj_agente,
+			@RequestParam() Boolean aprovado, @RequestParam() @DateTimeFormat(pattern = "dd.MM.yyyy")Date data) {
+		return parecerRepo.save(new Parecer(id_pedido, cnpj_agente, aprovado, data)).toString();
+	}
+	
+	@GetMapping("/cadastro/pedido")
+	public String cadastrarPedido(@RequestParam() String cpf_contratante,
+			@RequestParam() String placa_veiculo) {
+		return pedidoRepo.save(new Pedido(cpf_contratante, placa_veiculo)).toString();
+	}
+
 	@Override
 	public void run(String... args) throws Exception {
-	
-		
-		List<Automovel> automoveis = automovelRepo.findAll();		
+
+		List<Automovel> automoveis = automovelRepo.findAll();
 		Cli.imprimirLista(automoveis);
-		
+
 		List<Agente> agentes = agenteRepo.findAll();
 		Cli.imprimirLista(agentes);
 
