@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/cadastro.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <h1>Cadastro</h1>
+    </header>
+    <div class="container">
+
+        <main>
+            <div class="central">
+                <h2>Automóvel</h2>
+                <form  method="post" action="localhost:8080/cadastro/automovel">
+                    <fieldset>
+                        <input placeholder="Matricula" name="matricula" type="text">
+                        <input placeholder="Ano"  name="ano" type="text">
+                        <input placeholder="Marca"  name="marca" type="text">
+                        <input placeholder="Modelo" name="modelo" type="text">
+                        <input placeholder="Placa" name="plca" type="text">
+
+                        <input class="enviar" type="submit" value="Cadastrar">
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="central">
+                <h2>Agente</h2>
+                <form method="post" action="localhost:8080/cadastro/agente" >
+                    <fieldset>
+                        <input placeholder="Login" name="login" type="text">
+                        <input placeholder="Senha" name="senha" type="text">
+                        <input placeholder="Empresa" name="empresa" type="text">
+                        <input placeholder="CNPJ" name="cnpj" type="text">
+
+                        <input class="enviar" type="submit" value="Cadastrar">
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="central">
+                <h2>Contratante</h2>
+                <form method="post" action="localhost:8080/cadastro/automovel" >
+                    <fieldset>
+                        <input placeholder="Login" name="login" type="text">
+                        <input placeholder="Senha" name="senha" type="text">
+                        <input placeholder="RG" name="rg" type="text">
+                        <input placeholder="CPF" name="cpf" type="text">
+                        <input placeholder="Endereco" name="endereco" type="text">
+                        <input placeholder="Profissao" name="profissao" type="text">
+                        <input placeholder="Entidades Empregadoras" name="empresa" type="text">
+                        <input placeholder="Rendimentos" name="rendimentos" type="text">
+
+                        <input class="enviar" type="submit" value="Cadastrar">
+                    </fieldset>
+                </form>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+
+</html>
