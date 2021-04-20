@@ -1,35 +1,41 @@
-header{
+header {
     text-align: center;
 }
-body{
-    background: linear-gradient(to right ,#4c59c9,#b959bb);
+
+body {
+    background: linear-gradient(to right, #4c59c9, #b959bb);
     font-family: 'Varela', sans-serif;
     font-weight: none;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
-h1,h2{
+
+h1,
+h2 {
     cursor: default;
 }
-h1{
+
+h1 {
     border: none;
     font-size: 2em;
     margin-top: 20px;
-    
+
 }
-fieldset{
+
+form {
     margin: 15px 0px;
 }
 
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: center;
 }
-.central{
+
+.central {
     padding: 10px;
-    border-radius:2px;
+    border-radius: 2px;
     box-shadow: 1px 1px 0.2px black;
     background-color: white;
     width: 500px;
@@ -37,7 +43,7 @@ fieldset{
     margin: 20px 0;
 }
 
-input{
+input {
     display: block;
     border-radius: 5px;
     border: 0.5px solid black;
@@ -45,14 +51,21 @@ input{
     margin-top: 4px;
     text-align: center;
 }
-input:focus{
+
+input:focus {
     outline: none;
 }
-.interna{
+
+.interna {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.enviar{
+
+.enviar {
     margin-top: 15px;
+}
+
+button {
+    cursor: pointer;
 }

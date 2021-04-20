@@ -6,10 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/cadastro.css">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./cadastro.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="./cadastro.js"></script>
 
 </head>
 
@@ -22,48 +26,44 @@
         <main>
             <div class="central">
                 <h2>Automóvel</h2>
-                <form  method="post" action="localhost:8080/cadastro/automovel">
-                    <fieldset>
-                        <input placeholder="Matricula" name="matricula" type="text">
-                        <input placeholder="Ano"  name="ano" type="text">
-                        <input placeholder="Marca"  name="marca" type="text">
-                        <input placeholder="Modelo" name="modelo" type="text">
-                        <input placeholder="Placa" name="plca" type="text">
+                <form id="cadastro_automovel">
+                    <input placeholder="Matricula" name="matricula" type="text" id="cadastro_automovel_matricula">
+                    <input placeholder="Ano" name="ano" type="text" id="cadastro_automovel_ano">
+                    <input placeholder="Marca" name="marca" type="text" id="cadastro_automovel_marca">
+                    <input placeholder="Modelo" name="modelo" type="text" id="cadastro_automovel_modelo">
+                    <input placeholder="Placa" name="placa" type="text" id="cadastro_automovel_placa">
 
-                        <input class="enviar" type="submit" value="Cadastrar">
-                    </fieldset>
+                    <button type="submit" class="enviar">Cadastrar</button>
                 </form>
             </div>
 
             <div class="central">
                 <h2>Agente</h2>
-                <form method="post" action="localhost:8080/cadastro/agente" >
-                    <fieldset>
-                        <input placeholder="Login" name="login" type="text">
-                        <input placeholder="Senha" name="senha" type="text">
-                        <input placeholder="Empresa" name="empresa" type="text">
-                        <input placeholder="CNPJ" name="cnpj" type="text">
+                <form id="cadastro_agente">
+                    <input placeholder="Nome" name="nome" type="text" id="cadastro_agente_nome">
+                    <input placeholder="Login" name="login" type="text" id="cadastro_agente_login">
+                    <input placeholder="Senha" name="senha" type="text" id="cadastro_agente_senha">
+                    <input placeholder="Empresa" name="empresa" type="text" id="cadastro_agente_empresa">
+                    <input placeholder="CNPJ" name="cnpj" type="text" id="cadastro_agente_cnpj">
 
-                        <input class="enviar" type="submit" value="Cadastrar">
-                    </fieldset>
+                    <button type="submit" class="enviar">Cadastrar</button>
                 </form>
             </div>
 
             <div class="central">
                 <h2>Contratante</h2>
-                <form method="post" action="localhost:8080/cadastro/automovel" >
-                    <fieldset>
-                        <input placeholder="Login" name="login" type="text">
-                        <input placeholder="Senha" name="senha" type="text">
-                        <input placeholder="RG" name="rg" type="text">
-                        <input placeholder="CPF" name="cpf" type="text">
-                        <input placeholder="Endereco" name="endereco" type="text">
-                        <input placeholder="Profissao" name="profissao" type="text">
-                        <input placeholder="Entidades Empregadoras" name="empresa" type="text">
-                        <input placeholder="Rendimentos" name="rendimentos" type="text">
+                <form id="cadastro_contratante">
+                    <input placeholder="Nome" name="nome" type="text" id="cadastro_contratante_nome">
+                    <input placeholder="Login" name="login" type="text" id="cadastro_contratante_login">
+                    <input placeholder="Senha" name="senha" type="text" id="cadastro_contratante_senha">
+                    <input placeholder="RG" name="rg" type="text" id="cadastro_contratante_rg">
+                    <input placeholder="CPF" name="cpf" type="text" id="cadastro_contratante_cpf">
+                    <input placeholder="Endereco" name="endereco" type="text" id="cadastro_contratante_endereco">
+                    <input placeholder="Profissao" name="profissao" type="text" id="cadastro_contratante_profissao">
+                    <input placeholder="Entidades Empregadoras" name="entidades_empregadoras" type="text" id="cadastro_contratante_entidades-empregadoras">
+                    <input placeholder="Rendimentos" name="rendimento" type="text" id="cadastro_contratante_rendimentos">
 
-                        <input class="enviar" type="submit" value="Cadastrar">
-                    </fieldset>
+                    <button type="submit" class="enviar">Cadastrar</button>
                 </form>
             </div>
         </main>

@@ -10,7 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,46 +53,43 @@ public class BackendApplication implements CommandLineRunner {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
-	}
-
-	@GetMapping("/cadastro/automovel")
-	public String cadastrarAutomovel(@RequestParam() String placa, @RequestParam() String matricula,
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
+	@PostMapping("/cadastro/automovel")
+	public void cadastrarAutomovel(@RequestParam() String placa, @RequestParam() String matricula,
 			@RequestParam() int ano, @RequestParam() String marca, @RequestParam() String modelo) {
-		return automovelRepo.save(new Automovel(placa, matricula, ano, marca, modelo)).toString();
+		automovelRepo.save(new Automovel(placa, matricula, ano, marca, modelo));
 	}
 
-	@GetMapping("/cadastro/agente")
-	public String cadastrarAgente(@RequestParam() String cnpj, @RequestParam() String empresa,
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
+	@PostMapping("/cadastro/agente")
+	public void cadastrarAgente(@RequestParam() String cnpj, @RequestParam() String empresa,
 			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome,
-			@RequestParam(required=false) String placa_veiculo) {
-		return agenteRepo.save(new Agente(cnpj, empresa, login, senha, nome, placa_veiculo)).toString();
+			@RequestParam(required = false) String placa_veiculo) {
+		agenteRepo.save(new Agente(cnpj, empresa, login, senha, nome, placa_veiculo));
 	}
 
-	@GetMapping("/cadastro/contratante")
-	public String cadastrarContratante(@RequestParam() String cpf, @RequestParam() String rg,
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
+	@PostMapping("/cadastro/contratante")
+	public void cadastrarContratante(@RequestParam() String cpf, @RequestParam() String rg,
 			@RequestParam() String endereco, @RequestParam() String profissao,
 			@RequestParam() String entidades_empregadoras, @RequestParam() float rendimento,
 			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome,
 			@RequestParam(required = false) String placa_veiculo) {
-		return contratanteRepo.save(new Contratante(cpf, rg, endereco, profissao, entidades_empregadoras, rendimento,
-				login, senha, nome, placa_veiculo)).toString();
+		contratanteRepo.save(new Contratante(cpf, rg, endereco, profissao, entidades_empregadoras, rendimento, login,
+				senha, nome, placa_veiculo));
 	}
-	
+
 	@GetMapping("/cadastro/parecer")
 	public String cadastrarParecer(@RequestParam() int id_pedido, @RequestParam() String cnpj_agente,
-			@RequestParam() Boolean aprovado, @RequestParam() @DateTimeFormat(pattern = "dd.MM.yyyy")Date data) {
+			@RequestParam() Boolean aprovado, @RequestParam() @DateTimeFormat(pattern = "dd.MM.yyyy") Date data) {
 		return parecerRepo.save(new Parecer(id_pedido, cnpj_agente, aprovado, data)).toString();
 	}
-	
+
 	@GetMapping("/cadastro/pedido")
-	public String cadastrarPedido(@RequestParam() String cpf_contratante,
-			@RequestParam() String placa_veiculo) {
+	public String cadastrarPedido(@RequestParam() String cpf_contratante, @RequestParam() String placa_veiculo) {
 		return pedidoRepo.save(new Pedido(cpf_contratante, placa_veiculo)).toString();
 	}
-	
+
 	@GetMapping("/listar/automoveis")
 	public List<Automovel> listarAutomoveis() {
 		return automovelRepo.findAll();
@@ -110,7 +109,7 @@ public class BackendApplication implements CommandLineRunner {
 	public List<Parecer> listarPareceres() {
 		return parecerRepo.findAll();
 	}
-	
+
 	@GetMapping("/listar/pedidos")
 	public List<Pedido> listarPedidos() {
 		return pedidoRepo.findAll();
