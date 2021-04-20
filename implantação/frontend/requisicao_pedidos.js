@@ -8,20 +8,15 @@ let cpf_contratante;
 let placa_veiculo;
 
 $.ajax({
-    url: "http://localhost:8080/listar/pedidos/",
+    url: "//http://localhost:8080/listar/automoveis",
     dataType: 'json',
     success: function (response) {
 
-        tam = response.length;
-
-        while (id <= tam) {
-            $.ajax({
-                url: "http://localhost:8080/listar/pedidos/" + id,
-                dataType: 'json',
-                success: function (response2) {
-                    id_pedido = response2.id_pedido;
-                    cpf_contratante = response2.cpf_contratante;
-                    placa_veiculo = response2.placa_veiculo;
+    response.forEach(element => {
+            
+                    id_pedido = element.id_pedido;
+                    cpf_contratante = element.cpf_contratante;
+                    placa_veiculo = element.placa_veiculo;
                     container = document.querySelector(".container3");
                     template = 
                     `
@@ -32,12 +27,14 @@ $.ajax({
                     </div>
                     `
                     container.innerHTML += template;
-                }
+                
             });
-            ++id;
         }
+        
 
-    }
-});
+
+    })
+    
+
 
 
