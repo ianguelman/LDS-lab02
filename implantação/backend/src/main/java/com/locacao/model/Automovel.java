@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.locacao.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,6 +13,19 @@ public class Automovel {
 	private int ano;
 	private String marca;
 	private String modelo;
+
+	public Automovel() {
+		super();
+	}
+
+	public Automovel(String placa, String matricula, int ano, String marca, String modelo) {
+		super();
+		this.placa = placa;
+		this.matricula = matricula;
+		this.ano = ano;
+		this.marca = marca;
+		this.modelo = modelo;
+	}
 
 	public String getPlaca() {
 		return placa;
