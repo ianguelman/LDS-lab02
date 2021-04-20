@@ -2,6 +2,7 @@ package com.locacao.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -113,6 +114,32 @@ public class BackendApplication implements CommandLineRunner {
 	@GetMapping("/listar/pedidos")
 	public List<Pedido> listarPedidos() {
 		return pedidoRepo.findAll();
+	}
+	
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
+	@PostMapping("/login/agente")
+	public Agente logarAgente(@RequestParam() String cnpj, @RequestParam() String senha) {
+		Optional<Agente> agente = agenteRepo.findById(cnpj);
+		
+		if (agente.isPresent()) {
+			if (agente.get().getSenha().equals(senha))
+				return agente.get();
+			return null;
+		}
+		return null;
+	}
+	
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
+	@PostMapping("/login/contratante")
+	public Contratante logarContratante(@RequestParam() String cpf, @RequestParam() String senha) {
+		Optional<Contratante> contratante = contratanteRepo.findById(cpf);
+		
+		if (contratante.isPresent()) {
+			if (contratante.get().getSenha().equals(senha))
+				return contratante.get();
+			return null;
+		}
+		return null;
 	}
 
 	@Override
