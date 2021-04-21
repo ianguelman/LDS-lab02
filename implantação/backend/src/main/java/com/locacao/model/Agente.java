@@ -1,6 +1,7 @@
 package com.locacao.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,6 +25,10 @@ public class Agente {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CNPJ_Agente")
 	private List<Automovel> automoveis;
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CNPJ_Agente")
+	private Set<Parecer> pareceres;
 
 	public Agente() {
 		super();
@@ -86,10 +91,18 @@ public class Agente {
 		this.automoveis = automoveis;
 	}
 
+	public Set<Parecer> getPareceres() {
+		return pareceres;
+	}
+
+	public void setPareceres(Set<Parecer> pareceres) {
+		this.pareceres = pareceres;
+	}
+
 	@Override
 	public String toString() {
 		return "Agente [cnpj=" + cnpj + ", empresa=" + empresa + ", login=" + login + ", senha=" + senha + ", nome="
-				+ nome + ", automoveis=" + automoveis + "]";
+				+ nome + ", automoveis=" + automoveis + ", pareceres=" + pareceres + "]";
 	}
 
 }

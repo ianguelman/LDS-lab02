@@ -4,7 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Pedido")
@@ -13,17 +19,21 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_pedido;
-	private String cpf_contratante;
-	private String placa_veiculo;
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "CPF_Contratante")
+	private Contratante contratante;
+	@JsonManagedReference
+	@ManyToOne
+	@JoinColumn(name = "Placa_veiculo")
+	private Automovel automovel;
+	@JsonBackReference
+	@OneToOne
+	@JoinColumn(name = "Id_Pedido")
+	private Parecer parecer;
 
 	public Pedido() {
 		super();
-	}
-
-	public Pedido(String cpf_contratante, String placa_veiculo) {
-		super();
-		this.cpf_contratante = cpf_contratante;
-		this.placa_veiculo = placa_veiculo;
 	}
 
 	public int getId_pedido() {
@@ -34,26 +44,33 @@ public class Pedido {
 		this.id_pedido = id_pedido;
 	}
 
-	public String getCpf_contratante() {
-		return cpf_contratante;
+	public Parecer getParecer() {
+		return parecer;
 	}
 
-	public void setCpf_contratante(String cpf_contratante) {
-		this.cpf_contratante = cpf_contratante;
+	public void setParecer(Parecer parecer) {
+		this.parecer = parecer;
 	}
 
-	public String getPlaca_veiculo() {
-		return placa_veiculo;
+	public Contratante getContratante() {
+		return contratante;
 	}
 
-	public void setPlaca_veiculo(String placa_veiculo) {
-		this.placa_veiculo = placa_veiculo;
+	public void setContratante(Contratante contratante) {
+		this.contratante = contratante;
+	}
+
+	public Automovel getAutomovel() {
+		return automovel;
+	}
+
+	public void setAutomovel(Automovel automovel) {
+		this.automovel = automovel;
 	}
 
 	@Override
 	public String toString() {
-		return "Pedido [id_pedido=" + id_pedido + ", cpf_contratante=" + cpf_contratante + ", placa_veiculo="
-				+ placa_veiculo + "]";
+		return "Pedido [id_pedido=" + id_pedido + ", automovel=" + automovel + "]";
 	}
 
 }

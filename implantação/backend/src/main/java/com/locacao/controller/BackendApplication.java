@@ -83,13 +83,13 @@ public class BackendApplication implements CommandLineRunner {
 	@GetMapping("/cadastro/parecer")
 	public String cadastrarParecer(@RequestParam() int id_pedido, @RequestParam() String cnpj_agente,
 			@RequestParam() Boolean aprovado, @RequestParam() @DateTimeFormat(pattern = "dd.MM.yyyy") Date data) {
-		return parecerRepo.save(new Parecer(id_pedido, cnpj_agente, aprovado, data)).toString();
+		return parecerRepo.save(new Parecer(aprovado, data)).toString();
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/cadastro/pedido")
 	public String cadastrarPedido(@RequestParam() String cpf_contratante, @RequestParam() String placa_veiculo) {
-		return pedidoRepo.save(new Pedido(cpf_contratante, placa_veiculo)).toString();
+		return pedidoRepo.save(new Pedido()).toString();
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })

@@ -6,7 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Parecer")
@@ -15,8 +21,14 @@ public class Parecer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_parecer;
-	private int id_pedido;
-	private String cnpj_agente;
+	@JsonManagedReference
+	@OneToOne
+	@JoinColumn(name = "Id_Pedido")
+	private Pedido pedido;
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="CNPJ_Agente")
+	private Agente agente;
 	private Boolean aprovado;
 	private Date data;
 
@@ -24,10 +36,8 @@ public class Parecer {
 		super();
 	}
 
-	public Parecer(int id_pedido, String cnpj_agente, Boolean aprovado, Date data) {
+	public Parecer(Boolean aprovado, Date data) {
 		super();
-		this.id_pedido = id_pedido;
-		this.cnpj_agente = cnpj_agente;
 		this.aprovado = aprovado;
 		this.data = data;
 	}
@@ -40,21 +50,6 @@ public class Parecer {
 		this.id_parecer = id_parecer;
 	}
 
-	public int getId_pedido() {
-		return id_pedido;
-	}
-
-	public void setId_pedido(int id_pedido) {
-		this.id_pedido = id_pedido;
-	}
-
-	public String getCnpj_agente() {
-		return cnpj_agente;
-	}
-
-	public void setCnpj_agente(String cnpj_agente) {
-		this.cnpj_agente = cnpj_agente;
-	}
 
 	public Boolean getAprovado() {
 		return aprovado;
@@ -72,9 +67,27 @@ public class Parecer {
 		this.data = data;
 	}
 
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+
+	public Agente getAgente() {
+		return agente;
+	}
+
+	public void setAgente(Agente agente) {
+		this.agente = agente;
+	}
+
 	@Override
 	public String toString() {
-		return "Parecer [id_parecer=" + id_parecer + ", id_pedido=" + id_pedido + ", cnpj_agente=" + cnpj_agente
-				+ ", aprovado=" + aprovado + ", data=" + data + "]";
+		return "Parecer [id_parecer=" + id_parecer + ", pedido=" + pedido + ", aprovado="
+				+ aprovado + ", data=" + data + "]";
 	}
+
 }

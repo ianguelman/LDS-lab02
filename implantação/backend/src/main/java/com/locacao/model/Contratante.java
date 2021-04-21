@@ -1,6 +1,7 @@
 package com.locacao.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,6 +29,10 @@ public class Contratante {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CPF_Contratante")
 	private List<Automovel> automoveis;
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CPF_Contratante")
+	private Set<Pedido> pedidos;
 
 	public Contratante() {
 		super();
@@ -127,11 +132,20 @@ public class Contratante {
 		this.automoveis = automoveis;
 	}
 
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	@Override
 	public String toString() {
 		return "Contratante [cpf=" + cpf + ", rg=" + rg + ", endereco=" + endereco + ", profissao=" + profissao
 				+ ", entidades_empregadoras=" + entidades_empregadoras + ", rendimento=" + rendimento + ", login="
-				+ login + ", senha=" + senha + ", nome=" + nome + ", automoveis=" + automoveis + "]";
+				+ login + ", senha=" + senha + ", nome=" + nome + ", automoveis=" + automoveis + ", pedidos=" + pedidos
+				+ "]";
 	}
 
 
