@@ -8,9 +8,11 @@ let cpf_contratante;
 let placa_veiculo;
 
 $.ajax({
-    url: "//http://localhost:8080/listar/automoveis",
+    url: "http://localhost:8080/listar/pedidos",
     dataType: 'json',
     success: function (response) {
+
+        console.log(response)
 
     response.forEach(element => {
             
