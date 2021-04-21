@@ -64,9 +64,8 @@ public class BackendApplication implements CommandLineRunner {
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@PostMapping("/cadastro/agente")
 	public void cadastrarAgente(@RequestParam() String cnpj, @RequestParam() String empresa,
-			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome,
-			@RequestParam(required = false) String placa_veiculo) {
-		agenteRepo.save(new Agente(cnpj, empresa, login, senha, nome, placa_veiculo));
+			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome) {
+		agenteRepo.save(new Agente(cnpj, empresa, login, senha, nome));
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
@@ -76,51 +75,58 @@ public class BackendApplication implements CommandLineRunner {
 			@RequestParam() String entidades_empregadoras, @RequestParam() float rendimento,
 			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome,
 			@RequestParam(required = false) String placa_veiculo) {
-		contratanteRepo.save(new Contratante(cpf, rg, endereco, profissao, entidades_empregadoras, rendimento, login,
-				senha, nome, placa_veiculo));
+		contratanteRepo.save(
+				new Contratante(cpf, rg, endereco, profissao, entidades_empregadoras, rendimento, login, senha, nome));
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/cadastro/parecer")
 	public String cadastrarParecer(@RequestParam() int id_pedido, @RequestParam() String cnpj_agente,
 			@RequestParam() Boolean aprovado, @RequestParam() @DateTimeFormat(pattern = "dd.MM.yyyy") Date data) {
 		return parecerRepo.save(new Parecer(id_pedido, cnpj_agente, aprovado, data)).toString();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/cadastro/pedido")
 	public String cadastrarPedido(@RequestParam() String cpf_contratante, @RequestParam() String placa_veiculo) {
 		return pedidoRepo.save(new Pedido(cpf_contratante, placa_veiculo)).toString();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/listar/automoveis")
 	public List<Automovel> listarAutomoveis() {
 		return automovelRepo.findAll();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/listar/agentes")
 	public List<Agente> listarAgentes() {
 		return agenteRepo.findAll();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/listar/contratantes")
 	public List<Contratante> listarContratantes() {
 		return contratanteRepo.findAll();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/listar/pareceres")
 	public List<Parecer> listarPareceres() {
 		return parecerRepo.findAll();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@GetMapping("/listar/pedidos")
 	public List<Pedido> listarPedidos() {
 		return pedidoRepo.findAll();
 	}
-	
+
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@PostMapping("/login/agente")
 	public Agente logarAgente(@RequestParam() String cnpj, @RequestParam() String senha) {
 		Optional<Agente> agente = agenteRepo.findById(cnpj);
-		
+
 		if (agente.isPresent()) {
 			if (agente.get().getSenha().equals(senha))
 				return agente.get();
@@ -128,12 +134,12 @@ public class BackendApplication implements CommandLineRunner {
 		}
 		return null;
 	}
-	
+
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
 	@PostMapping("/login/contratante")
 	public Contratante logarContratante(@RequestParam() String cpf, @RequestParam() String senha) {
 		Optional<Contratante> contratante = contratanteRepo.findById(cpf);
-		
+
 		if (contratante.isPresent()) {
 			if (contratante.get().getSenha().equals(senha))
 				return contratante.get();
