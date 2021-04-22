@@ -73,23 +73,33 @@ public class BackendApplication implements CommandLineRunner {
 	public void cadastrarContratante(@RequestParam() String cpf, @RequestParam() String rg,
 			@RequestParam() String endereco, @RequestParam() String profissao,
 			@RequestParam() String entidades_empregadoras, @RequestParam() float rendimento,
-			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome,
-			@RequestParam(required = false) String placa_veiculo) {
+			@RequestParam() String login, @RequestParam() String senha, @RequestParam() String nome) {
 		contratanteRepo.save(
 				new Contratante(cpf, rg, endereco, profissao, entidades_empregadoras, rendimento, login, senha, nome));
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
-	@GetMapping("/cadastro/parecer")
+	@PostMapping("/cadastro/parecer")
 	public String cadastrarParecer(@RequestParam() int id_pedido, @RequestParam() String cnpj_agente,
-			@RequestParam() Boolean aprovado, @RequestParam() @DateTimeFormat(pattern = "dd.MM.yyyy") Date data) {
-		return parecerRepo.save(new Parecer(aprovado, data)).toString();
+			@RequestParam() Boolean aprovado, @RequestParam() @DateTimeFormat(pattern = "dd/MM/yyyy") Date data,
+			@RequestParam() String placa_veiculo, @RequestParam(required = false) String cpf_contratante) {
+		if (cpf_contratante != null) {
+			automovelRepo.findById(placa_veiculo).get().setContratante(contratanteRepo.findById(cpf_contratante).get());
+			automovelRepo.save(automovelRepo.findById(placa_veiculo).get());
+		}
+		else {
+			automovelRepo.findById(placa_veiculo).get().setAgente(agenteRepo.findById(cnpj_agente).get());
+			automovelRepo.save(automovelRepo.findById(placa_veiculo).get());
+		}
+		return parecerRepo.save(new Parecer(pedidoRepo.findById(id_pedido).get(),
+				agenteRepo.findById(cnpj_agente).get(), aprovado, data)).toString();
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
-	@GetMapping("/cadastro/pedido")
+	@PostMapping("/cadastro/pedido")
 	public String cadastrarPedido(@RequestParam() String cpf_contratante, @RequestParam() String placa_veiculo) {
-		return pedidoRepo.save(new Pedido()).toString();
+		return pedidoRepo.save(new Pedido(contratanteRepo.findById(cpf_contratante).get(),
+				automovelRepo.findById(placa_veiculo).get())).toString();
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
@@ -120,6 +130,12 @@ public class BackendApplication implements CommandLineRunner {
 	@GetMapping("/listar/pedidos")
 	public List<Pedido> listarPedidos() {
 		return pedidoRepo.findAll();
+	}
+
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
+	@PostMapping("/cancelar/pedido")
+	public void cancelarPedido(@RequestParam() int id_pedido) {
+		pedidoRepo.delete(pedidoRepo.findById(id_pedido).get());
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })

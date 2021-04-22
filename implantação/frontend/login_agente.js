@@ -22,6 +22,8 @@ $(() => {
                 alert("Logado")
                 $("#login_agente_cnpj").val("")
                 $("#login_agente_senha").val("")
+                localStorage.clear()
+                localStorage.setItem("cnpj", cnpj)
                 }
             }
         })

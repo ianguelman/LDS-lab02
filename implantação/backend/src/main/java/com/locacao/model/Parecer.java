@@ -25,9 +25,9 @@ public class Parecer {
 	@OneToOne
 	@JoinColumn(name = "Id_Pedido")
 	private Pedido pedido;
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn(name="CNPJ_Agente")
+	@JoinColumn(name = "CNPJ_Agente")
 	private Agente agente;
 	private Boolean aprovado;
 	private Date data;
@@ -36,8 +36,10 @@ public class Parecer {
 		super();
 	}
 
-	public Parecer(Boolean aprovado, Date data) {
+	public Parecer(Pedido pedido, Agente agente, Boolean aprovado, Date data) {
 		super();
+		this.pedido = pedido;
+		this.agente = agente;
 		this.aprovado = aprovado;
 		this.data = data;
 	}
@@ -49,7 +51,6 @@ public class Parecer {
 	public void setId_parecer(int id_parecer) {
 		this.id_parecer = id_parecer;
 	}
-
 
 	public Boolean getAprovado() {
 		return aprovado;
@@ -75,7 +76,6 @@ public class Parecer {
 		this.pedido = pedido;
 	}
 
-
 	public Agente getAgente() {
 		return agente;
 	}
@@ -86,8 +86,8 @@ public class Parecer {
 
 	@Override
 	public String toString() {
-		return "Parecer [id_parecer=" + id_parecer + ", pedido=" + pedido + ", aprovado="
-				+ aprovado + ", data=" + data + "]";
+		return "Parecer [id_parecer=" + id_parecer + ", pedido=" + pedido + ", aprovado=" + aprovado + ", data=" + data
+				+ ", agente=" + agente + "]";
 	}
 
 }

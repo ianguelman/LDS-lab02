@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -25,7 +26,7 @@ public class Agente {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CNPJ_Agente")
 	private List<Automovel> automoveis;
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CNPJ_Agente")
 	private Set<Parecer> pareceres;
@@ -102,7 +103,7 @@ public class Agente {
 	@Override
 	public String toString() {
 		return "Agente [cnpj=" + cnpj + ", empresa=" + empresa + ", login=" + login + ", senha=" + senha + ", nome="
-				+ nome + ", automoveis=" + automoveis + ", pareceres=" + pareceres + "]";
+				+ nome + ", automoveis=" + automoveis + "]";
 	}
 
 }

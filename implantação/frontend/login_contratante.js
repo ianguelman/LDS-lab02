@@ -22,6 +22,8 @@ $(() => {
                 alert("Logado")
                 $("#login_contratante_cpf").val("")
                 $("#login_contratante_senha").val("")
+                localStorage.clear()
+                localStorage.setItem("cpf", cpf)
                 }
             }
         })

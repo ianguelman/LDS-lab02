@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -29,7 +30,7 @@ public class Contratante {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CPF_Contratante")
 	private List<Automovel> automoveis;
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CPF_Contratante")
 	private Set<Pedido> pedidos;
@@ -144,8 +145,7 @@ public class Contratante {
 	public String toString() {
 		return "Contratante [cpf=" + cpf + ", rg=" + rg + ", endereco=" + endereco + ", profissao=" + profissao
 				+ ", entidades_empregadoras=" + entidades_empregadoras + ", rendimento=" + rendimento + ", login="
-				+ login + ", senha=" + senha + ", nome=" + nome + ", automoveis=" + automoveis + ", pedidos=" + pedidos
-				+ "]";
+				+ login + ", senha=" + senha + ", nome=" + nome + ", automoveis=" + automoveis + "]";
 	}
 
 

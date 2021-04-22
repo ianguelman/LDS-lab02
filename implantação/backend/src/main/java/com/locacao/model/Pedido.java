@@ -19,7 +19,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_pedido;
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "CPF_Contratante")
 	private Contratante contratante;
@@ -35,6 +35,13 @@ public class Pedido {
 	public Pedido() {
 		super();
 	}
+	
+	public Pedido(Contratante contratante, Automovel automovel) {
+		super();
+		this.contratante = contratante;
+		this.automovel = automovel;
+	}
+
 
 	public int getId_pedido() {
 		return id_pedido;
@@ -70,7 +77,7 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [id_pedido=" + id_pedido + ", automovel=" + automovel + "]";
+		return "Pedido [id_pedido=" + id_pedido + ", automovel=" + automovel + ", contratante=" + contratante + "]";
 	}
 
 }
