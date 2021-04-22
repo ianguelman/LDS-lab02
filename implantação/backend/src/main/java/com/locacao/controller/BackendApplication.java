@@ -86,8 +86,7 @@ public class BackendApplication implements CommandLineRunner {
 		if (cpf_contratante != null) {
 			automovelRepo.findById(placa_veiculo).get().setContratante(contratanteRepo.findById(cpf_contratante).get());
 			automovelRepo.save(automovelRepo.findById(placa_veiculo).get());
-		}
-		else {
+		} else {
 			automovelRepo.findById(placa_veiculo).get().setAgente(agenteRepo.findById(cnpj_agente).get());
 			automovelRepo.save(automovelRepo.findById(placa_veiculo).get());
 		}
@@ -136,6 +135,16 @@ public class BackendApplication implements CommandLineRunner {
 	@PostMapping("/cancelar/pedido")
 	public void cancelarPedido(@RequestParam() int id_pedido) {
 		pedidoRepo.delete(pedidoRepo.findById(id_pedido).get());
+	}
+
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
+	@PostMapping("/modificar/pedido")
+	public void modificarPedido(@RequestParam() int id_pedido, @RequestParam() String placa_veiculo,
+			@RequestParam() String cpf_contratante) {
+		Pedido pedido = pedidoRepo.findById(id_pedido).get();
+		pedido.setAutomovel(automovelRepo.findById(placa_veiculo).get());
+		pedido.setContratante(contratanteRepo.findById(cpf_contratante).get());
+		pedidoRepo.save(pedido);
 	}
 
 	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:5500", "http://127.0.0.1:5500" })
