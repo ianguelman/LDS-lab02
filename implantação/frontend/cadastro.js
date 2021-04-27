@@ -1,4 +1,8 @@
 $(() => {
+    if (localStorage.getItem("cnpj") == null) {
+        $("main").html(`<h1>Não é possível realizar cadastro logado como contratante</h1><h1>Faça login como agente e tente novamente</h1>`)
+    }
+
     $("#cadastro_automovel").on("submit", (e) => {
         e.preventDefault()
 
