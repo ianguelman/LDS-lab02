@@ -46,7 +46,7 @@ header a {
     border-radius: 2px;
     box-shadow: 1px 1px 0.2px black;
     background-color: white;
-    width: 500px;
+    width: 100%;
     text-align: center;
     margin: 20px 0;
 }
@@ -96,6 +96,6 @@ button {
     background-color: white;
     display: inline-block;
     text-align: center;
-    width: 40%;
+    width: 45%;
     margin: 10px;
 }

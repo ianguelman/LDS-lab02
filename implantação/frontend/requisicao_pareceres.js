@@ -26,7 +26,7 @@ $.ajax({
                 container = document.querySelector(".container3");
                 template =
                     `
-            <div class="central2">
+            <div class="central">
                 <strong>Id_parecer:&nbsp</strong>${id_parecer} <br/>
                 <strong>Id_pedido:&nbsp</strong>${id_pedido} <br/>
                 <strong>Placa veiculo:&nbsp</strong>${placa_veiculo} <br/>
@@ -56,7 +56,7 @@ $.ajax({
                 container = document.querySelector(".container3");
                 template =
                     `
-            <div class="central2">
+            <div class="central">
                 <strong>Id_parecer:&nbsp</strong>${id_parecer} <br/>
                 <strong>Id_pedido:&nbsp</strong>${id_pedido} <br/>
                 <strong>Placa veiculo:&nbsp</strong>${placa_veiculo} <br/>
